@@ -1,0 +1,40 @@
+import React, { Component } from 'react';
+import Calendar from './src/Calendar';
+import moment from 'moment';
+import { View, Text, StyleSheet } from 'react-native';
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      selectedDate: null
+    };
+  }
+
+  handleDateChange = (selectedMoment) => {
+    this.setState({
+      selectedDate: selectedMoment
+    });
+  };
+
+  render() {
+    return (
+      <View>
+        <Text>Calendar App</Text>
+        <Calendar
+          moment={moment()}
+          onChange={this.handleDateChange}
+        />
+        <View>
+          Fecha seleccionada: {this.state.selectedDate ? this.state.selectedDate.format('YYYY-MM-DD') : 'Ninguna'}
+        </View>
+      </View>
+    );
+  }
+}
+
+export default App;
+const style = StyleSheet.create({
+    container:{
+      backgroundColor: '#7D7F7D'
+    }
+})
