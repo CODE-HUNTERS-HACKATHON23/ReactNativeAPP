@@ -1,7 +1,8 @@
-
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { StyleSheet, TouchableOpacity, View, Animated, requireNativeComponent  } from "react-native";
+import { StyleSheet, TouchableOpacity, ScrollView, Animated } from "react-native";
+import CMedicinas from '../Components/CMedicinas';
 import React, { Component, useState } from 'react'
+import { View } from 'react-native';
 export default function FloatingMenu(props) {
     const [icon_1] = useState(new Animated.Value(40));
     const [icon_2] = useState(new Animated.Value(40));
@@ -35,8 +36,21 @@ export default function FloatingMenu(props) {
     }
     return (
         <View style={{ flex: 1, padding: 'auto' }} >
+            <ScrollView style={{flex: 2}}>
+                <CMedicinas/>
+                <CMedicinas/>
+                <CMedicinas/>
+                <CMedicinas/>
+                <CMedicinas/>
+                <CMedicinas/>
+                <CMedicinas/>
+                <CMedicinas/>
+                <CMedicinas/>
+                <CMedicinas/>
+                <CMedicinas/>
+            </ScrollView>
             <Animated.View style={[styles.secundario, { bottom: icon_1 }]}>
-                <TouchableOpacity onPress={() => props.navigation.navigate('TexInput')}>
+                <TouchableOpacity onPress={() => props.navigation.navigate('NombreUnidad')}>
                     <MaterialCommunityIcons name="pill" size={23} color={'#FFF'} />
                 </TouchableOpacity>
             </Animated.View>
