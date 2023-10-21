@@ -1,7 +1,6 @@
 
 import { StyleSheet, TouchableOpacity, View, Text } from "react-native";
-import React, { Component, useState } from 'react'
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import React, {useState } from 'react'
 import RadioForm from 'react-native-simple-radio-button';
 
 export default function RadioButton(props) {
@@ -14,8 +13,7 @@ export default function RadioButton(props) {
     return (
         <View style={{ flex: 1, padding: 30, alignItems: 'center' }}>
             <Text style={{ fontSize: 28, textAlign: 'center', marginTop:150}}>¿Con que frecuencia toma su medicamento?</Text>
-            <View style={{marginTop: 50, flex: 1}}>
-
+            <View style={{marginTop: 10, flex: 1}}>
                 <RadioForm radio_props={items}
                     initial={value} onPress={(value) => setValue
                     } labelStyle={{ fontSize: 20}} />

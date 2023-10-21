@@ -1,81 +1,104 @@
 import React, { useState } from "react";
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { StyleSheet, TouchableOpacity, View, Animated, Text } from "react-native";
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import Notificacion from './Notificacion'
-import ChatPM from '../Pantallas/ChatPM'
-import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import { LinearGradient } from "expo-linear-gradient";
+
 const Stack = createNativeStackNavigator();
+
 const FloatingMenu = (props) => {
-    const [icon_1] = useState(new Animated.Value(40));
-    const [icon_2] = useState(new Animated.Value(40));
+    const [icon_1] = useState(new Animated.Value(0));
 
     const [pop, setPop] = useState(false);
+
     const popIn = () => {
         setPop(true);
         Animated.timing(icon_1, {
-            toValue: 130,
+            toValue: 110,
             duration: 500,
             useNativeDriver: false,
         }).start();
-        Animated.timing(icon_2, {
-            toValue: 200,
-            duration: 500,
-            useNativeDriver: false,
-        }).start();
-    }
+
+    };
+
     const popOut = () => {
         setPop(false);
         Animated.timing(icon_1, {
-            toValue: 40,
+            toValue: 0,
             duration: 500,
             useNativeDriver: false,
         }).start();
-        Animated.timing(icon_2, {
-            toValue: 40,
-            duration: 500,
-            useNativeDriver: false,
-        }).start();
-    }
+
+    };
+
+    const gradientColors = ['#18BBEA', '#21409A'];
+
     return (
-        <View style={{ flex: 1, padding: 'auto' }} >
-            <Animated.View style={[styles.secundario, { bottom: icon_1 }]}>
-                <TouchableOpacity onPress={async () => {
-                    await Notificacion(Nombre="ELuardo", Ubicacion='Judas');
-                }}>
-                    <MaterialCommunityIcons name="forum" size={23} color={'#FFF'} />
-                </TouchableOpacity>
+        <View style={{ flex: 1, padding: 'auto'}}>
+            <Animated.View style={[styles.buttonGradient, { bottom: icon_1, left: 325, paddingTop: 380}]}>
+                <LinearGradient
+                    colors={gradientColors}
+                    start={{ x: 0, y: 1 }}
+                    end={{ x: 1, y: 0 }}
+                    style={styles.secundario}
+                >
+                    <TouchableOpacity onPress={async () => {
+                        await Notificacion(Nombre = "ELuardo", Ubicacion = 'Judas');
+                    }}>
+                        <Ionicons name='folder' color='#fff' size={25} />
+                    </TouchableOpacity>
+                </LinearGradient>
             </Animated.View>
-            <Animated.View style={[styles.secundario, { bottom: icon_2 }]}>
-                <TouchableOpacity>
-                    <MaterialCommunityIcons name="file-document-multiple-outline" size={23} color={"#FFFF"} />
+
+            <LinearGradient
+                colors={gradientColors}
+                start={{ x: 0, y: 1 }}
+                end={{ x: 1, y: 0 }}
+                style={[styles.button, {position: 'absolute'}]}
+            >
+                <TouchableOpacity 
+                    onPress={() => {
+                        pop === false ? popIn() : popOut();
+                    }}
+                >
+                    <Ionicons name='add-outline' color='#fff' size={30} />
                 </TouchableOpacity>
-            </Animated.View>
-            <TouchableOpacity
-                style={styles.button}
-                onPress={() => {
-                    pop === false ? popIn() : popOut();
-                }}>
-                <MaterialCommunityIcons name="plus" size={25} color={"#FFFF"} />
-            </TouchableOpacity>
+            </LinearGradient>
         </View>
-    )
-}
-export default FloatingMenu
+    );
+};
+
+export default FloatingMenu;
+
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: "center",
-        padding: 'auto',
-    },
     button: {
-        backgroundColor: '#112E53',
-        width: 80,
-        height: 80,
+        width: 100,
+        height: 100,
         position: 'absolute',
         bottom: 40,
         right: 40,
+        borderRadius: 100 / 2,
+        alignItems: 'center',
+        justifyContent: 'center',
+        shadowColor: 'black',
+        shadowOffset: { width: 0, height: 13 },
+        shadowOpacity: 0.3,
+        shadowRadius: 15,
+        padding: 'auto',
+    },
+    buttonGradient: {
+        width: 100,
+        height: 100,
+        borderRadius: 100 / 2,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    secundario: {
+        width: 80,
+        height: 80,
+        position: 'absolute',
+        bottom: 50,
+        right: 50,
         borderRadius: 80 / 2,
         alignItems: 'center',
         justifyContent: 'center',
@@ -83,25 +106,7 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 13 },
         shadowOpacity: 0.3,
         shadowRadius: 15,
+        elevation: 8,
         padding: 'auto',
-    },
-    secundario: {
-        backgroundColor: '#112E53',
-        width: 60,
-        height: 60,
-        position: 'absolute',
-        bottom: 50,
-        right: 50,
-        borderRadius: 60 / 2,
-        alignItems: 'center',
-        justifyContent: 'center',
-        shadowColor: 'black',
-        shadowOffset: { width: 0, height: 13 },
-        shadowOpacity: 0.3,
-        shadowRadius: 15,
-        padding: 'auto',
-    },
-    menu: {
-        backgroundColor: "F02A4B"
     }
-})
+});

@@ -8,7 +8,12 @@ import Citas from '../Pantallas/Citas'
 import Frecuencia from '../Pantallas/Medicina/Frecuencia'
 import Nombre_Unidad from '../Pantallas/Medicina/NombreUnidad'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-
+import DetalleMedicina from '../Pantallas/Medicina/DetelleMedicina'
+import Register from '../Pantallas/LogIn/Register'
+import { LinearGradient } from 'expo-linear-gradient'
+import LogIn from '../Pantallas/LogIn/LogIn'
+import Vermas from '../Pantallas/Vermas'
+import Folder from '../Pantallas/Folder'
 const Stack = createNativeStackNavigator();
 const AppNavigation = createStackNavigator({
     Splash: {
@@ -22,6 +27,21 @@ const AppNavigation = createStackNavigator({
         navigationOptions: {
             headerShown: false,
         }
+    },
+    LogIn: {
+        screen: LogIn,
+        navigationOptions: {
+            headerShown: false,
+        }
+    },
+    Register: {
+        screen: Register,
+        navigationOptions: {
+            headerShown: false
+        }
+    },
+    DetalleMedicina: {
+        screen: DetalleMedicina,
     },
     Medicina: {
         screen: Medicina,
@@ -66,30 +86,14 @@ const AppNavigation = createStackNavigator({
                 backgroundColor: '#113E53',
             },
             headerTintColor: '#fff',
+            headerTitle: 'Añadir Medicamento'
         }
+    },
+    Vermas: {
+        screen: Vermas
+    },
+    Folder:{
+        screen: Folder,
     }
 })
 export default createAppContainer(AppNavigation)
-/*
-function MyStack() {
-    return (
-      <Stack.Navigator>
-      <Stack.Screen name='Citas' component={Citas} options={{
-          headerStyle:{
-              backgroundColor: '#113E53', 
-            
-        },
-        headerTintColor: '#fff'
-    }}/>
-      </Stack.Navigator>
-      );
-  
-  }
-  export default function AppNavigation() {
-    return (
-      <NavigationContainer>
-        <MyStack />
-      </NavigationContainer>
-    );
-} 
-*/

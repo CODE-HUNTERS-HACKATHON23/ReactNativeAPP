@@ -1,31 +1,44 @@
-import React from 'react';
-import {SafeAreaView, StyleSheet, TextInput} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, TextInput, Text } from 'react-native';
 
-const TextInputNumeric = () => {
-  const [number, onChangeNumber] = React.useState('1');
-  const [text, onChangeText] = React.useState('1');
+const NumericTextInput = ({ onChange }) => {
+  const [value, setValue] = useState('1'); // Establece '1' como valor predeterminado
+
+  const handleTextChange = (text) => {
+    if (/^\d*$/.test(text)) {
+      if (text.length <= 2) {
+        if (text.length === 2 && text[0] === '0') {
+          setValue(text[1]);
+        } else{
+          setValue(text);
+        }
+      }
+    }
+    onChange(text);
+  };
+  useEffect(() => {
+    onChange(value);
+  }, []);
+
   return (
-    <SafeAreaView>
+    <View style={{ flexDirection: 'row', marginTop: 15 }}>
+      <Text style={{ top: 8, left: 23, fontSize: 20}}>
+        Ingrese las unidades
+      </Text>
       <TextInput
-        style={styles.input}
-        keyboardType='Numeric'
-        placeholder='Nombre medicamento'
-        value={text}
+        keyboardType="numeric"
+        value={value}
+        onChangeText={handleTextChange}
+        placeholder="1"
+        style={{
+          borderBottomWidth: 1,
+          borderBottomColor: '#7D7F7D',
+          width: 50,
+          marginLeft: 120,
+        }}
       />
-    </SafeAreaView>
+    </View>
   );
 };
 
-const styles = StyleSheet.create({
-  input: {
-    height: 40,
-    width: 150,
-    margin: 12,
-    borderBottomWidth: 1,
-    borderBottomColor: '#7D7F7D',
-    padding: 10,
-    marginLeft: 'au'
-  },
-});
-
-export default TextInputNumeric;
+export default NumericTextInput;

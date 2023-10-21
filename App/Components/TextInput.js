@@ -1,15 +1,16 @@
-import React from 'react';
+import React, {useState}from 'react';
 import {SafeAreaView, StyleSheet, TextInput} from 'react-native';
+const TextInputR = ({onTextChange }) => {
 
-const TextInputR = () => {
-  const [number, onChangeNumber] = React.useState('');
-  const [text, onChangeText] = React.useState('');
+  const handleTextChange = (value) => {
+    onTextChange(value);
+  };
   return (
     <SafeAreaView>
       <TextInput
         style={styles.input}
         placeholder='Nombre medicamento'
-        value={text}
+        onChangeText={handleTextChange}
       />
     </SafeAreaView>
   );
@@ -20,6 +21,7 @@ const styles = StyleSheet.create({
     height: 40,
     width: 350,
     margin: 12,
+    fontSize: 20,
     borderBottomWidth: 1,
     borderBottomColor: '#7D7F7D',
     padding: 10,

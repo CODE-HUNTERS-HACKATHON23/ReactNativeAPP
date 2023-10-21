@@ -10,19 +10,15 @@ const ProximaCita = (props) => {
             </View>
             <View style={{ marginBottom: '30%', backgroundColor: '#FF', marginTop: 20 }}>
                 <View style={{ flexDirection: 'row', margin: 'auto' }}>
-                    <MaterialCommunityIcons name={'clock-time-eight-outline'} size={20} color={"#7D7F7D"} style={{ marginLeft: 15 }} />
                     <Text style={[style.TextoP, { marginLeft: 10 }]}>{Hora}</Text>
                 </View>
                 <View style={{ flexDirection: 'row', marginTop: 10 }}>
-                    <MaterialCommunityIcons name={'calendar'} size={20} color={"#7D7F7D"} style={{ marginLeft: 15 }} />
                     <Text style={[style.TextoP, { marginLeft: 10 }]}>{Fecha}</Text>
                 </View>
                 <View style={{ flexDirection: 'row', marginTop: 10 }}>
-                    <MaterialCommunityIcons name={'account-circle'} size={20} color={"#7D7F7D"} style={{ marginLeft: 15 }} />
                     <Text style={[style.TextoP, { marginLeft: 10 }]}>{NombreDoctor}</Text>
                 </View>
                 <View style={{ flexDirection: 'row', marginTop: 10 }}>
-                    <MaterialCommunityIcons name={'google-maps'} size={20} color={"#7D7F7D"} style={{ marginLeft: 15 }} />
                     <Text style={[style.TextoP, { marginLeft: 10 }]}>{NombreUnidad}</Text>
                 </View>
             </View>
@@ -34,7 +30,7 @@ export default ProximaCita;
 
 const style = StyleSheet.create({
     General: {
-        height: '20%',
+        height: '30%',
         width: '80%',
         backgroundColor: '#fff',
         alignItems: 'left',
